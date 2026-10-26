@@ -15,7 +15,7 @@ export default function TopPicks() {
           {topPicks.map((pick, i) => (
             <motion.div
               key={pick.title}
-              className="group relative flex h-[260px] shrink-0 snap-start items-end sm:h-[300px]"
+              className="group relative flex h-[240px] shrink-0 snap-start items-end sm:h-[300px]"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '0px -5% 0px 0px' }}
@@ -23,20 +23,20 @@ export default function TopPicks() {
             >
               <span
                 aria-hidden
-                className="text-outline -mr-6 select-none font-display leading-[0.78] transition duration-500 group-hover:[-webkit-text-stroke-color:rgba(255,61,90,0.85)] sm:-mr-8"
-                style={{ fontSize: i === 9 ? 'clamp(9rem, 22vw, 15rem)' : 'clamp(11rem, 26vw, 19rem)', letterSpacing: i === 9 ? '-0.06em' : 0 }}
+                className="text-outline -mr-5 select-none font-display leading-[0.78] transition duration-500 group-hover:[-webkit-text-stroke-color:rgba(255,61,90,0.85)] sm:-mr-8"
+                style={{ fontSize: i === 9 ? 'clamp(6rem, 20vw, 15rem)' : 'clamp(7.5rem, 24vw, 19rem)', letterSpacing: i === 9 ? '-0.06em' : 0 }}
               >
                 {i + 1}
               </span>
-              <div className="relative z-10 h-[85%] w-[150px] overflow-hidden rounded-lg shadow-[-12px_0_30px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition duration-500 group-hover:-translate-y-2 group-hover:ring-white/30 sm:w-[180px]">
+              <div className="relative z-10 h-[85%] w-[140px] overflow-hidden rounded-lg shadow-[-12px_0_30px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition duration-500 group-hover:-translate-y-2 group-hover:ring-white/30 sm:w-[180px]">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
                   <PosterBackdrop palette={pick.palette} />
                 </div>
-                <div className="absolute inset-0 flex flex-col justify-between p-3.5">
+                <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-3.5">
                   <span className="text-[9px] font-bold uppercase tracking-[0.26em] text-bone/70">{pick.label}</span>
                   <div>
-                    <p className="font-display text-[1.75rem] leading-[0.92] tracking-wide text-bone">{pick.title}</p>
-                    <p className="mt-1.5 text-[11px] leading-snug text-mist">{pick.detail}</p>
+                    <p className="font-display text-2xl leading-[0.92] tracking-wide text-bone sm:text-[1.75rem]">{pick.title}</p>
+                    <p className="mt-1 text-[11px] leading-snug text-mist sm:mt-1.5">{pick.detail}</p>
                   </div>
                 </div>
               </div>

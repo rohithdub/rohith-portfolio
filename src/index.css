@@ -17,11 +17,12 @@
 
 :root {
   color-scheme: dark;
-  --gutter: clamp(16px, 4vw, 56px);
+  --gutter: clamp(14px, 4vw, 56px);
 }
 
 html {
   position: relative;
+  max-width: 100%;
   background: var(--color-ink);
   -webkit-text-size-adjust: 100%;
 }
@@ -150,5 +151,28 @@ a:focus-visible {
   }
   .light-streak {
     display: none;
+  }
+}
+
+/* Cross-browser portrait blend masks */
+.mask-opening-portrait {
+  mask-image: radial-gradient(ellipse 85% 75% at 46% 50%, black 45%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 46% 50%, black 45%, transparent 95%);
+}
+@media (min-width: 640px) {
+  .mask-opening-portrait {
+    mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
+  }
+}
+
+.mask-hero-portrait {
+  mask-image: radial-gradient(ellipse 88% 82% at 50% 48%, black 48%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 50% 48%, black 48%, transparent 95%);
+}
+@media (min-width: 1024px) {
+  .mask-hero-portrait {
+    mask-image: linear-gradient(to bottom, black 62%, transparent 97%);
+    -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 97%);
   }
 }

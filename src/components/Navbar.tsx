@@ -60,7 +60,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
       transition={{ duration: 0.45, ease: EASE }}
     >
       <div
-        className={`gutter flex h-16 items-center justify-between gap-6 transition-[background,backdrop-filter] duration-500 md:h-[72px] ${
+        className={`gutter flex h-16 items-center justify-between gap-4 transition-[background,backdrop-filter] duration-500 sm:gap-6 md:h-[72px] ${
           solid || mobileNav ? 'bg-ink/80 backdrop-blur-xl' : 'bg-gradient-to-b from-black/80 to-transparent'
         }`}
       >
@@ -91,7 +91,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
               aria-haspopup="menu"
               aria-expanded={menu}
               aria-label={`Viewing as ${current.name}. Switch profile`}
-              className="flex items-center gap-2 rounded-md p-1"
+              className="flex min-h-11 items-center gap-2 rounded-md p-1"
             >
               <ProfileAvatar id={profileId} size="sm" />
               <motion.span animate={{ rotate: menu ? 180 : 0 }} className="text-[10px] text-mist">
@@ -106,7 +106,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.97 }}
                   transition={{ duration: 0.25, ease: EASE }}
-                  className="absolute right-0 top-12 w-60 origin-top-right rounded-xl border border-white/10 bg-ink-2/95 p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute right-0 top-12 w-60 max-w-[calc(100vw-1.5rem)] origin-top-right rounded-xl border border-white/10 bg-ink-2/95 p-2 shadow-2xl backdrop-blur-xl"
                 >
                   <p className="px-3 pb-2 pt-1 text-[10px] font-semibold tracking-[0.24em] text-smoke">WHO&apos;S WATCHING?</p>
                   {viewerProfiles.map((p) => (
@@ -118,7 +118,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
                         onSwitch(p.id);
                         setMenu(false);
                       }}
-                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition hover:bg-white/5 ${p.id === profileId ? 'bg-white/[0.06]' : ''}`}
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition hover:bg-white/5 ${p.id === profileId ? 'bg-white/[0.06]' : ''}`}
                     >
                       <ProfileAvatar id={p.id} size="sm" />
                       <span>
@@ -133,7 +133,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
           </div>
           <button
             type="button"
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
             aria-label={mobileNav ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileNav}
             onClick={() => setMobileNav((v) => !v)}
@@ -148,7 +148,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
         {mobileNav && (
           <motion.nav
             aria-label="Sections"
-            className="gutter border-b border-white/5 bg-ink/95 pb-6 pt-2 backdrop-blur-xl lg:hidden"
+            className="gutter max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain border-b border-white/5 bg-ink/95 pb-6 pt-2 backdrop-blur-xl lg:hidden"
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
@@ -162,7 +162,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.05 * i }}
-                className={`block w-full py-3 text-left font-display text-3xl tracking-wide ${active === l.id ? 'text-crimson-2' : 'text-bone'}`}
+                className={`block w-full py-2.5 text-left font-display text-2xl tracking-wide sm:py-3 sm:text-3xl ${active === l.id ? 'text-crimson-2' : 'text-bone'}`}
               >
                 {l.label}
               </motion.button>

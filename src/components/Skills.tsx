@@ -28,7 +28,7 @@ export default function Skills() {
             >
               {i === cat && <motion.span layoutId="skill-tab" className="absolute inset-0 rounded-lg bg-white/[0.07] ring-1 ring-white/10" transition={{ duration: 0.45, ease: EASE }} />}
               {i === cat && <motion.span layoutId="skill-bar" className="absolute bottom-2 left-0 top-2 hidden w-[3px] rounded lg:block" style={{ background: hue }} />}
-              <span className="relative block font-display text-2xl tracking-wide lg:text-3xl">{c.title}</span>
+              <span className="relative block whitespace-nowrap font-display text-xl tracking-wide sm:text-2xl lg:whitespace-normal lg:text-3xl">{c.title}</span>
               <span className="relative hidden text-xs text-smoke lg:block">
                 {c.skills.length} skills · {c.subtitle}
               </span>
@@ -76,12 +76,12 @@ function SkillCard({ skill, hue }: { skill: Skill; hue: string }) {
         exit: { opacity: 0, y: -12, transition: { duration: 0.2 } },
       }}
       whileHover={{ y: -6 }}
-      className="group relative flex min-h-[148px] flex-col overflow-hidden rounded-xl bg-ink-2 p-4 text-left ring-1 ring-white/10 transition-shadow duration-500 hover:ring-white/20"
+      className="group relative flex min-h-[140px] flex-col overflow-hidden rounded-xl bg-ink-2 p-3.5 text-left ring-1 ring-white/10 transition-shadow duration-500 hover:ring-white/20 sm:min-h-[148px] sm:p-4"
       style={{ boxShadow: open ? `0 18px 50px -12px ${hue}55, 0 0 0 1px ${hue}66` : undefined }}
     >
       <div aria-hidden className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition duration-500 group-hover:opacity-60" style={{ background: hue }} />
       <motion.span
-        className="relative flex h-12 w-12 items-center justify-center rounded-lg font-display text-2xl tracking-wide"
+        className="relative flex h-11 w-11 items-center justify-center rounded-lg font-display text-xl tracking-wide sm:h-12 sm:w-12 sm:text-2xl"
         style={{ background: `${hue}1f`, color: hue, boxShadow: `inset 0 0 0 1px ${hue}55` }}
         animate={open ? { rotate: [0, -8, 8, 0], scale: 1.08 } : { rotate: 0, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -89,10 +89,10 @@ function SkillCard({ skill, hue }: { skill: Skill; hue: string }) {
       >
         {skill.mono}
       </motion.span>
-      <span className="relative mt-4 flex items-center gap-2 text-[15px] font-semibold text-bone">
-        {skill.name}
+      <span className="relative mt-3 flex flex-wrap items-center gap-1.5 text-sm font-semibold text-bone sm:mt-4 sm:gap-2 sm:text-[15px]">
+        <span>{skill.name}</span>
         {skill.note && (
-          <span className="rounded px-1.5 py-px text-[9px] font-bold uppercase tracking-wider text-ink" style={{ background: hue }}>
+          <span className="shrink-0 rounded px-1.5 py-px text-[9px] font-bold uppercase tracking-wider text-ink" style={{ background: hue }}>
             {skill.note}
           </span>
         )}

@@ -33,7 +33,7 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
   const more = projects.filter((p) => p.id !== project.id);
 
   return (
-    <motion.div className="fixed inset-0 z-[140]" role="dialog" aria-modal="true" aria-labelledby={`title-${project.id}-modal`}>
+    <motion.div data-lenis-prevent className="fixed inset-0 z-[140]" role="dialog" aria-modal="true" aria-labelledby={`title-${project.id}-modal`}>
       <motion.div
         className="absolute inset-0 bg-black/80 backdrop-blur-md"
         initial={{ opacity: 0 }}
@@ -50,7 +50,7 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
           exit={{ opacity: 0, y: 30, transition: { duration: 0.3 } }}
         >
           {/* billboard */}
-          <div className="relative h-[52vh] min-h-[340px] overflow-hidden sm:rounded-t-2xl">
+          <div className="relative h-[42vh] min-h-[260px] overflow-hidden sm:h-[52vh] sm:min-h-[340px] sm:rounded-t-2xl">
             <motion.div layoutId={`art-${project.id}`} className="absolute inset-0" transition={{ duration: 0.7, ease: EASE }}>
               <ProjectArt project={project} />
             </motion.div>
@@ -65,14 +65,14 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
             >
               ✕
             </button>
-            <div className="absolute inset-x-0 bottom-0 px-5 pb-6 sm:px-10">
-              <motion.p className="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-[0.34em] text-bone/80" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-                <span className="font-display text-xl tracking-normal text-crimson-2">R</span> ORIGINAL
+            <div className="absolute inset-x-0 bottom-0 px-4 pb-5 sm:px-10 sm:pb-6">
+              <motion.p className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-[0.3em] text-bone/80 sm:text-[11px] sm:tracking-[0.34em]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                <span className="font-display text-lg tracking-normal text-crimson-2 sm:text-xl">R</span> ORIGINAL
               </motion.p>
               <motion.h2
                 id={`title-${project.id}-modal`}
                 layoutId={`title-${project.id}`}
-                className="font-display text-[clamp(2.8rem,8vw,6rem)] leading-[0.86] tracking-wide text-bone"
+                className="font-display text-[clamp(2.4rem,7vw,6rem)] leading-[0.88] tracking-wide text-bone"
                 transition={{ duration: 0.7, ease: EASE }}
               >
                 {project.title}
@@ -80,30 +80,30 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
             </div>
           </div>
 
-          <motion.div className="px-5 pb-12 sm:px-10" initial="hidden" animate="show" transition={{ staggerChildren: 0.08, delayChildren: 0.25 }}>
+          <motion.div className="px-4 pb-10 sm:px-10 sm:pb-12" initial="hidden" animate="show" transition={{ staggerChildren: 0.08, delayChildren: 0.25 }}>
             <motion.div variants={block} className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-mist">
               <span className="font-semibold text-[#46e3a8]">{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-smoke" />
               <span>{project.genre}</span>
             </motion.div>
 
-            <motion.p variants={block} className="mt-4 max-w-3xl text-lg leading-relaxed text-bone sm:text-xl">
+            <motion.p variants={block} className="mt-4 max-w-3xl text-base leading-relaxed text-bone sm:text-xl">
               {project.logline}
             </motion.p>
 
             {/* impact */}
-            <motion.section variants={block} className="mt-12">
-              <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em] text-crimson-2">Result / Impact</h3>
+            <motion.section variants={block} className="mt-10 sm:mt-12">
+              <h3 className="mb-4 text-[10px] font-bold uppercase tracking-[0.3em] text-crimson-2 sm:text-[11px]">Result / Impact</h3>
               <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-3 lg:grid-cols-5">
                 {project.metrics.map((m, i) => (
                   <motion.div
                     key={m.label}
-                    className="bg-ink p-4 sm:p-5"
+                    className="bg-ink p-3.5 sm:p-5"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5 + i * 0.07, duration: 0.5, ease: EASE }}
                   >
-                    <p className="font-display text-4xl leading-none text-bone sm:text-5xl" style={{ color: i === 0 ? project.palette.accent : undefined }}>
+                    <p className="font-display text-3xl leading-none text-bone sm:text-5xl" style={{ color: i === 0 ? project.palette.accent : undefined }}>
                       {m.value}
                     </p>
                     <p className="mt-2 text-xs leading-snug text-mist">{m.label}</p>

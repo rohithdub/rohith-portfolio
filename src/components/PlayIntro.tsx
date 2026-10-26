@@ -98,14 +98,14 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
         initial={{ scale: 1, opacity: 1 }}
         animate={phase === 'zoom' ? { scale: [1, 1.08, 2.6], opacity: [0.9, 1, 0] } : { opacity: 0.1, scale: 1.25, filter: 'blur(4px)' }}
         transition={{ duration: phase === 'zoom' ? 1.7 : 1.2, ease: [0.7, 0, 0.2, 1], times: phase === 'zoom' ? [0, 0.3, 1] : undefined }}
-        style={{ transformOrigin: '50% 30%' }}
+        style={{ transformOrigin: '43% 30%' }}
       >
         <img
           src={profile.portrait.src}
           srcSet={profile.portrait.srcSet}
           sizes="100vw"
           alt=""
-          className="h-[88vh] w-auto max-w-none object-contain [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
+          className="h-[88vh] w-auto max-w-none translate-x-[3.5%] object-contain sm:translate-x-0 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]"
         />
       </motion.div>
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_45%,rgba(120,10,25,0.35),transparent_70%)]" />
@@ -139,7 +139,7 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.5em] text-crimson-2 sm:text-xs">
                 Episode {String(index + 1).padStart(2, '0')} · {slide.kicker}
               </p>
-              <h2 className="font-display leading-[0.88] text-bone" style={{ fontSize: 'clamp(3rem, 10vw, 8.5rem)' }}>
+              <h2 className="font-display leading-[0.88] text-bone" style={{ fontSize: 'clamp(2.4rem, 8.5vw, 8.5rem)' }}>
                 {slide.title}
               </h2>
               <div className="mt-6 space-y-2">
@@ -173,8 +173,8 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
             </motion.div>
           )}
           {phase === 'end' && (
-            <motion.div key="end" initial={{ opacity: 0, letterSpacing: '0.6em' }} animate={{ opacity: 1, letterSpacing: '0.2em' }} transition={{ duration: 1.2, ease: EASE }}>
-              <p className="font-display text-5xl text-bone sm:text-7xl">NOW STREAMING</p>
+            <motion.div key="end" initial={{ opacity: 0, letterSpacing: '0.4em' }} animate={{ opacity: 1, letterSpacing: '0.15em' }} transition={{ duration: 1.2, ease: EASE }}>
+              <p className="font-display text-4xl text-bone sm:text-7xl">NOW STREAMING</p>
               <p className="mt-3 text-xs font-semibold tracking-[0.4em] text-mist">{profile.displayName.toUpperCase()}</p>
             </motion.div>
           )}

@@ -29,6 +29,9 @@ const STORAGE_KEY = 'rohith-series-profile';
 
 function readStoredProfile(): ProfileId | null {
   try {
+    if (typeof window !== 'undefined' && (new URLSearchParams(window.location.search).has('home') || new URLSearchParams(window.location.search).has('skip'))) {
+      return 'rohith';
+    }
     const v = sessionStorage.getItem(STORAGE_KEY);
     return viewerProfiles.some((p) => p.id === v) ? (v as ProfileId) : null;
   } catch {

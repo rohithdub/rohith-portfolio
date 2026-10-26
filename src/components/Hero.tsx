@@ -74,25 +74,24 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
 
       {/* portrait */}
       <motion.div
-        className="absolute inset-x-0 top-12 z-[2] flex h-[64svh] items-end justify-center sm:h-[70svh] lg:bottom-0 lg:left-auto lg:right-[3vw] lg:top-20 lg:h-auto lg:w-[54vw] xl:right-[6vw] xl:w-[48vw]"
+        className="absolute inset-x-0 top-6 z-[2] flex h-[56svh] max-w-full items-end justify-center overflow-hidden sm:top-10 sm:h-[64svh] lg:bottom-0 lg:left-auto lg:right-[3vw] lg:top-20 lg:h-auto lg:w-[54vw] lg:overflow-visible xl:right-[6vw] xl:w-[48vw]"
         style={{ y: imgY, scale: imgScale, opacity: fade }}
       >
         <motion.div
-          className="relative h-full w-full lg:h-[86vh]"
+          className="relative h-full w-full max-w-full overflow-hidden lg:h-[86vh] lg:overflow-visible"
           style={{ rotateY: imgRotY, rotateX: imgRotX, x: imgShiftX, transformPerspective: 1200 }}
           initial={{ clipPath: 'inset(100% -30% -10% -30%)', opacity: 0 }}
           animate={{ clipPath: 'inset(-30% -30% -10% -30%)', opacity: 1 }}
           transition={{ duration: 1.6, ease: EASE, delay: 0.1 }}
         >
           {/* rim light ring */}
-          <div aria-hidden className="absolute bottom-[8%] left-1/2 h-[78%] w-[78%] -translate-x-1/2 rounded-full border border-crimson-2/20 shadow-[0_0_120px_rgba(229,19,43,0.35),inset_0_0_80px_rgba(229,19,43,0.18)]" />
+          <div aria-hidden className="absolute bottom-[8%] left-1/2 aspect-square h-[76%] max-w-[85%] -translate-x-1/2 rounded-full border border-crimson-2/20 shadow-[0_0_120px_rgba(229,19,43,0.35),inset_0_0_80px_rgba(229,19,43,0.18)]" />
           <img
             src={profile.portrait.src}
             srcSet={profile.portrait.srcSet}
-            sizes="(max-width: 1024px) 100vw, 54vw"
+            sizes="(max-width: 1024px) 90vw, 54vw"
             alt={profile.portrait.alt}
-
-            className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] [mask-image:linear-gradient(to_bottom,black_62%,transparent_97%)]"
+            className="mask-hero-portrait absolute bottom-0 left-1/2 h-full w-auto max-w-[86vw] -translate-x-1/2 object-contain object-bottom drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] sm:max-w-[80vw] lg:max-w-none lg:-translate-x-1/2"
           />
           {/* crimson rim light on the image edge */}
           <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_30%,rgba(255,61,90,0.16),transparent_70%)] mix-blend-screen" />
@@ -105,69 +104,73 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
       </motion.div>
 
       {/* readability gradients */}
-      <div aria-hidden className="absolute inset-x-0 top-[40svh] z-[3] h-[36svh] bg-gradient-to-b from-transparent via-ink/70 to-ink lg:hidden" />
+      <div aria-hidden className="absolute inset-x-0 top-[38svh] z-[3] h-[52svh] bg-gradient-to-b from-transparent via-ink/80 to-ink lg:hidden" />
       <div aria-hidden className="absolute inset-0 z-[3] hidden bg-[linear-gradient(90deg,var(--color-ink)_0%,rgba(7,7,10,0.7)_32%,transparent_58%)] lg:block" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 z-[3] h-48 bg-gradient-to-t from-ink to-transparent" />
 
       {/* copy */}
       <motion.div
-        className="gutter relative z-[4] flex min-h-[100svh] flex-col justify-end pb-16 pt-[54svh] sm:pb-20 lg:max-w-[52vw] lg:justify-center lg:pb-0 lg:pt-24"
+        className="gutter relative z-[4] flex min-h-[100svh] flex-col justify-end pb-8 pt-[36svh] sm:pb-16 sm:pt-[50svh] lg:max-w-[52vw] lg:justify-center lg:pb-0 lg:pt-24"
         style={{ y: textY, opacity: fade }}
         variants={container}
         initial="hidden"
         animate="show"
       >
-        <motion.div variants={item} className="mb-3 text-lg">
+        <motion.div variants={item} className="mb-2 text-base sm:mb-3 sm:text-lg">
           <SeriesMark />
         </motion.div>
-        <motion.h1 variants={item} className="font-display leading-[0.82] tracking-[0.02em] text-bone" style={{ fontSize: 'clamp(4rem, 12vw, 11rem)' }}>
+        <motion.h1 variants={item} className="font-display leading-[0.82] tracking-[0.02em] text-bone" style={{ fontSize: 'clamp(2.8rem, 11vw, 11rem)' }}>
           <span className="shimmer-text">{profile.firstName}</span>
         </motion.h1>
-        <motion.p variants={item} className="mt-1 font-sans text-sm font-bold tracking-[0.62em] text-crimson-2 sm:text-base">
+        <motion.p variants={item} className="mt-1 font-sans text-xs font-bold tracking-[0.45em] text-crimson-2 sm:text-base sm:tracking-[0.62em]">
           {profile.seriesTag}
         </motion.p>
 
-        <motion.div variants={item} className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] font-medium text-mist">
+        <motion.div variants={item} className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs font-medium text-mist sm:mt-5 sm:gap-x-3 sm:gap-y-2 sm:text-[13px]">
           <span className="rounded border border-white/25 px-1.5 py-px text-[10px] font-bold tracking-wider text-bone">ECE · BUILDER</span>
           {meta.map((m, i) => (
-            <span key={m} className="flex items-center gap-3">
+            <span key={m} className="flex items-center gap-2.5 sm:gap-3">
               {i > 0 && <span className="h-1 w-1 rounded-full bg-smoke" />}
               {m}
             </span>
           ))}
         </motion.div>
 
-        <motion.p variants={item} className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-bone/90 sm:text-xs sm:tracking-[0.34em]">
+        <motion.p variants={item} className="mt-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/90 sm:mt-4 sm:text-xs sm:tracking-[0.34em]">
           {profile.tagline.join(' • ')}
         </motion.p>
 
-        <motion.p variants={item} className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone/80 sm:text-base">
+        <motion.p variants={item} className="mt-2.5 max-w-xl text-sm leading-relaxed text-bone/80 sm:mt-4 sm:text-base">
           {profile.intro}
         </motion.p>
 
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
-          <Magnetic>
+        <motion.div variants={item} className="mt-6 flex items-center gap-2 sm:mt-8 sm:gap-3">
+          <Magnetic className="flex-1 sm:flex-initial">
             <button
               type="button"
               data-cursor="play"
               onClick={onPlay}
-              className="flex min-h-12 items-center gap-3 rounded-md bg-bone px-6 py-3 text-[15px] font-bold text-ink transition hover:bg-white sm:px-8"
+              className="flex min-h-11 w-full flex-1 items-center justify-center gap-2 rounded-md bg-bone px-3.5 py-2.5 text-xs font-bold text-ink transition hover:bg-white sm:min-h-12 sm:w-auto sm:flex-initial sm:gap-3 sm:px-8 sm:text-[15px]"
             >
-              <span className="text-lg">▶</span> Play Intro
+              <span className="text-sm sm:text-lg">▶</span> Play Intro
             </button>
           </Magnetic>
-          <Magnetic>
+          <Magnetic className="flex-1 sm:flex-initial">
             {profileId === 'recruiter' ? (
-              <button type="button" onClick={onResume} className="glass flex min-h-12 items-center gap-3 rounded-md px-6 py-3 text-[15px] font-semibold text-bone transition hover:bg-white/15 sm:px-8">
-                <span className="text-lg">⤓</span> View Resume
+              <button
+                type="button"
+                onClick={onResume}
+                className="glass flex min-h-11 w-full flex-1 items-center justify-center gap-2 rounded-md px-3.5 py-2.5 text-xs font-semibold text-bone transition hover:bg-white/15 sm:min-h-12 sm:w-auto sm:flex-initial sm:gap-3 sm:px-8 sm:text-[15px]"
+              >
+                <span className="text-sm sm:text-lg">⤓</span> View Resume
               </button>
             ) : (
               <button
                 type="button"
                 onClick={() => scrollTo('#originals')}
-                className="glass flex min-h-12 items-center gap-3 rounded-md px-6 py-3 text-[15px] font-semibold text-bone transition hover:bg-white/15 sm:px-8"
+                className="glass flex min-h-11 w-full flex-1 items-center justify-center gap-2 rounded-md px-3.5 py-2.5 text-xs font-semibold text-bone transition hover:bg-white/15 sm:min-h-12 sm:w-auto sm:flex-initial sm:gap-3 sm:px-8 sm:text-[15px]"
               >
-                <span className="text-xl leading-none">＋</span> My Work
+                <span className="text-base leading-none sm:text-xl">＋</span> My Work
               </button>
             )}
           </Magnetic>
@@ -175,7 +178,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
             type="button"
             onClick={() => scrollTo('#about')}
             aria-label="More info"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30 text-lg text-bone transition hover:border-bone hover:bg-white/10"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/30 text-base text-bone transition hover:border-bone hover:bg-white/10 sm:h-12 sm:w-12 sm:text-lg"
           >
             ⓘ
           </button>
@@ -194,7 +197,7 @@ function FloatChip({ text, sub, pos, depth, index, mx, my }: { text: string; sub
   const y = useTransform(my, (n: number) => n * depth);
   return (
     <motion.div
-      className={`glass absolute hidden rounded-xl px-4 py-2.5 md:block ${pos}`}
+      className={`glass absolute hidden rounded-xl px-4 py-2.5 lg:block ${pos}`}
       style={{ x, y }}
       initial={{ opacity: 0, filter: 'blur(6px)' }}
       animate={{ opacity: 1, filter: 'blur(0px)' }}

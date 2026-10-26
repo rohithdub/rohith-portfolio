@@ -8,7 +8,7 @@ export default function ResumeSection({ onView }: { onView: () => void }) {
   return (
     <>
       <SectionHeading kicker="The screenplay" title="The Full Story" />
-      <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
+      <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_320px] xl:gap-14">
         <motion.div
           initial={{ opacity: 0, y: 60, rotateX: 10 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -53,9 +53,9 @@ export default function ResumeSection({ onView }: { onView: () => void }) {
               { v: String(projects.length), k: 'Originals' },
               { v: String(achievements.length), k: 'Milestones' },
             ].map((s) => (
-              <div key={s.k} className="bg-ink-2 px-2 py-4">
-                <dd className="font-display text-3xl leading-none text-bone">{s.v}</dd>
-                <dt className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-smoke">{s.k}</dt>
+              <div key={s.k} className="bg-ink-2 px-1.5 py-3 sm:px-2 sm:py-4">
+                <dd className="font-display text-2xl leading-none text-bone sm:text-3xl">{s.v}</dd>
+                <dt className="mt-1 text-[9px] font-bold uppercase tracking-[0.16em] text-smoke sm:text-[10px] sm:tracking-[0.2em]">{s.k}</dt>
               </div>
             ))}
           </dl>
@@ -90,7 +90,7 @@ function H({ children }: { children: string }) {
 
 export function ResumeSheet() {
   return (
-    <article className="relative overflow-hidden rounded-2xl bg-[linear-gradient(180deg,#121218,#0c0c11)] p-6 ring-1 ring-white/10 sm:p-10">
+    <article className="relative overflow-hidden rounded-2xl bg-[linear-gradient(180deg,#121218,#0c0c11)] p-5 ring-1 ring-white/10 sm:p-10">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-crimson-2/70 to-transparent" />
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-6">
         <div>
@@ -98,7 +98,7 @@ export function ResumeSheet() {
           <h3 className="mt-1 font-display text-[clamp(1.9rem,4.4vw,3.2rem)] leading-[0.9] tracking-wide text-bone">{profile.fullName}</h3>
         </div>
         <div className="text-xs leading-relaxed text-mist sm:text-right">
-          <a href={`mailto:${profile.email}`} className="block hover:text-bone">
+          <a href={`mailto:${profile.email}`} className="block break-all hover:text-bone sm:break-normal">
             {profile.email}
           </a>
           <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="hover:text-bone">
@@ -107,7 +107,8 @@ export function ResumeSheet() {
         </div>
       </header>
 
-      <div className="grid gap-x-10 md:grid-cols-[1.4fr_1fr]">
+      {/* Balanced 2-column screenplay ratio */}
+      <div className="grid gap-x-10 md:grid-cols-2">
         <div>
           <H>Education</H>
           {education.map((e) => (
@@ -154,6 +155,13 @@ export function ResumeSheet() {
               <p className="text-xs text-mist">{p.stack.join(', ')}</p>
             </div>
           ))}
+
+          <H>Certifications</H>
+          <p className="text-xs leading-relaxed text-mist">
+            {Array.from(new Set(certifications.map((c) => c.issuer)))
+              .map((iss) => `${iss}: ${certifications.filter((c) => c.issuer === iss).map((c) => c.name).join(', ')}`)
+              .join(' · ')}
+          </p>
         </div>
 
         <div>
@@ -178,13 +186,6 @@ export function ResumeSheet() {
               </li>
             ))}
           </ul>
-
-          <H>Certifications</H>
-          <p className="text-xs leading-relaxed text-mist">
-            {Array.from(new Set(certifications.map((c) => c.issuer)))
-              .map((iss) => `${iss}: ${certifications.filter((c) => c.issuer === iss).map((c) => c.name).join(', ')}`)
-              .join(' · ')}
-          </p>
         </div>
       </div>
     </article>

@@ -7,7 +7,7 @@ export default function EpisodeCard({ episode, index }: { episode: Episode; inde
   const [season, ep] = episode.code.split(' ');
   return (
     <motion.article
-      className="w-[80vw] shrink-0 snap-start sm:w-[52vw] md:w-[38vw] lg:w-[30vw] xl:w-[26vw]"
+      className="w-[82vw] min-w-[260px] max-w-[380px] shrink-0 snap-start sm:w-[52vw] sm:max-w-none md:w-[38vw] lg:w-[30vw] xl:w-[26vw]"
       initial={{ opacity: 0, y: 30, rotateY: -8 }}
       animate={{ opacity: 1, y: 0, rotateY: 0 }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: EASE }}
@@ -24,7 +24,7 @@ export default function EpisodeCard({ episode, index }: { episode: Episode; inde
               <span className="rounded bg-black/50 px-2 py-0.5 text-[10px] font-bold tracking-[0.2em] text-bone backdrop-blur">{season}</span>
               <span className="text-[10px] font-bold tracking-[0.2em] text-bone/80">EPISODE {ep.replace('E', '')}</span>
             </div>
-            <h4 className="absolute bottom-4 left-4 right-4 font-display text-3xl leading-none tracking-wide text-bone [transform:translateZ(30px)] sm:text-4xl">{episode.title}</h4>
+            <h4 className="absolute bottom-3 left-4 right-4 font-display text-2xl leading-none tracking-wide text-bone [transform:translateZ(30px)] sm:bottom-4 sm:text-3xl md:text-4xl">{episode.title}</h4>
           </div>
           <div className="flex flex-1 flex-col p-4">
             <div className="mb-2 flex items-center justify-between text-[11px] text-smoke">

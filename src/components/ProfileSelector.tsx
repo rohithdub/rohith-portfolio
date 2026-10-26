@@ -9,7 +9,11 @@ export function ProfileAvatar({ id, size = 'lg' }: { id: ProfileId; size?: 'sm' 
   if (id === 'rohith') {
     return (
       <span className={`relative block overflow-hidden ${box}`} style={{ background: 'radial-gradient(circle at 50% 30%, #7a0f24, #1a0509)' }}>
-        <img src="./assets/portrait-420.webp" alt={profile.displayName} className="absolute inset-x-0 bottom-0 mx-auto h-[115%] w-auto max-w-none -translate-x-[3%] object-cover object-top" />
+        <img
+          src="./assets/portrait-420.webp"
+          alt={profile.displayName}
+          className="absolute bottom-0 left-1/2 h-[120%] w-auto max-w-none -translate-x-[36.5%] object-cover object-top"
+        />
       </span>
     );
   }
@@ -45,7 +49,7 @@ export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) =>
     >
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(229,19,43,0.14),transparent_70%)]" />
       <motion.h2
-        className="relative mb-10 text-center font-sans text-3xl font-medium tracking-tight text-bone sm:text-5xl"
+        className="relative mb-8 text-center font-sans text-2xl font-medium tracking-tight text-bone sm:mb-10 sm:text-5xl"
         initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         transition={{ duration: 0.8, ease: EASE }}
@@ -53,7 +57,7 @@ export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) =>
         Who&apos;s watching?
       </motion.h2>
       <motion.ul
-        className="relative grid grid-cols-2 gap-6 sm:flex sm:gap-8"
+        className="relative grid grid-cols-2 gap-4 sm:flex sm:gap-8"
         initial="hidden"
         animate="show"
         transition={{ staggerChildren: 0.08, delayChildren: 0.2 }}

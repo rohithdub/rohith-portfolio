@@ -21,8 +21,8 @@ function Intro() {
       <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-crimson-2">
         <span className="h-px w-8 bg-crimson-2" /> {projects.length} Originals · {projects[0].year}
       </p>
-      <RevealText as="h2" text="ORIGINALS" className="font-display text-[clamp(3.5rem,9vw,8rem)] leading-[0.85] text-bone" />
-      <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-mist">
+      <RevealText as="h2" text="ORIGINALS" className="font-display text-[clamp(2.8rem,8vw,8rem)] leading-[0.85] text-bone" />
+      <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist sm:text-[15px]">
         Original productions built and explored across AI, agriculture platforms, assistive education, and modern creative web interfaces.
       </p>
       <p className="mt-6 hidden text-xs tracking-[0.24em] text-smoke lg:block">SCROLL TO BROWSE →</p>
@@ -35,7 +35,7 @@ function Outro() {
     <a
       href="#contact"
       data-cursor="play"
-      className="group flex aspect-[3/4] w-[70vw] shrink-0 snap-start flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-white/15 bg-ink-2/30 text-center transition hover:border-crimson-2/60 sm:w-[44vw] lg:aspect-auto lg:h-[66vh] lg:w-[24vw]"
+      className="group flex aspect-[3/4] min-h-[440px] w-[70vw] min-w-[260px] max-w-[360px] shrink-0 snap-start flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-white/15 bg-ink-2/30 text-center transition hover:border-crimson-2/60 sm:min-h-0 sm:w-[44vw] sm:max-w-none lg:aspect-auto lg:h-[66vh] lg:w-[24vw]"
     >
       <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/25 text-2xl text-bone transition group-hover:scale-110 group-hover:border-crimson-2 group-hover:text-crimson-2">▶</span>
       <span className="font-display text-3xl tracking-wide text-bone">Let&apos;s Build</span>

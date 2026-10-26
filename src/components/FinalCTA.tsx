@@ -9,7 +9,8 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollTo } = useSmoothScroll();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'start 0.2'] });
-  const spacing = useTransform(scrollYProgress, [0, 1], ['0.6em', '0.02em']);
+  const isNarrow = typeof window !== 'undefined' && window.innerWidth < 640;
+  const spacing = useTransform(scrollYProgress, [0, 1], isNarrow ? ['0.14em', '0.01em'] : ['0.5em', '0.02em']);
   const blur = useTransform(scrollYProgress, [0, 1], ['blur(16px)', 'blur(0px)']);
   const opacity = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
@@ -20,24 +21,25 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
   ];
 
   return (
-    <section id="contact" ref={ref} className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center">
+    <section id="contact" ref={ref} className="relative flex min-h-[100svh] flex-col items-center justify-between overflow-hidden px-4 pt-20 pb-10 text-center sm:pt-24 sm:pb-12">
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,rgba(229,19,43,0.18),transparent_70%)]" />
       <Particles count={36} />
 
-      <motion.p
-        className="relative mb-6 text-[11px] font-bold uppercase tracking-[0.5em] text-crimson-2"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        The Next Episode
-      </motion.p>
-      <motion.h2
-        className="relative font-display leading-[0.85] text-bone"
-        style={{ fontSize: 'clamp(3.4rem, 13vw, 12rem)', letterSpacing: spacing, filter: blur, opacity }}
-      >
-        TO BE CONTINUED…
-      </motion.h2>
+      <div className="relative my-auto flex flex-col items-center">
+        <motion.p
+          className="relative mb-5 text-[10px] font-bold uppercase tracking-[0.35em] text-crimson-2 sm:mb-6 sm:text-[11px] sm:tracking-[0.5em]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          The Next Episode
+        </motion.p>
+        <motion.h2
+          className="relative font-display leading-[0.88] text-bone"
+          style={{ fontSize: 'clamp(2.6rem, 11vw, 12rem)', letterSpacing: spacing, filter: blur, opacity }}
+        >
+          TO BE CONTINUED…
+        </motion.h2>
 
       <motion.div
         className="relative mt-12"
@@ -78,16 +80,17 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
         ))}
       </motion.div>
 
-      <div className="relative mt-16 flex flex-wrap justify-center gap-6 text-xs font-semibold tracking-[0.24em] text-smoke">
-        <button type="button" onClick={() => scrollTo(0, { offset: 0 })} className="hover:text-bone">
-          ↺ WATCH AGAIN
-        </button>
-        <button type="button" onClick={onReplay} className="hover:text-bone">
-          ▶ REPLAY OPENING
-        </button>
+        <div className="relative mt-12 flex flex-wrap justify-center gap-6 text-xs font-semibold tracking-[0.24em] text-smoke sm:mt-16">
+          <button type="button" onClick={() => scrollTo(0, { offset: 0 })} className="py-2 hover:text-bone">
+            ↺ WATCH AGAIN
+          </button>
+          <button type="button" onClick={onReplay} className="py-2 hover:text-bone">
+            ▶ REPLAY OPENING
+          </button>
+        </div>
       </div>
 
-      <footer className="absolute inset-x-0 bottom-0 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-center">
+      <footer className="relative mt-12 w-full max-w-4xl px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-center sm:mt-16">
         <div className="mb-2 text-base">
           <SeriesMark />
         </div>
